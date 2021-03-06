@@ -8,8 +8,8 @@
 using namespace std;
 
 int main() {
-	Logger myLog(LogLevel::DEBUG, "loggerTest.txt");
-	myLog.Log("hello world",LogLevel::WARNING);
+	Logger myLog(Logger::DEBUG, "loggerTest.txt");
+	myLog.log("hello world",Logger::WARNING);
 	//NeuronTest a;
 	//a.testNeuron();
 	return 0;

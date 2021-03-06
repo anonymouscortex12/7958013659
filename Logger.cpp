@@ -26,12 +26,27 @@ Logger::~Logger() {
 	}
 }
 
-void Logger::Log(const char * message, LogLevel messageLevel) {
+void Logger::log(const char * message, LogLevel messageLevel) {
 	if (loggerLevel >= messageLevel ) {
+		string prefix;
+		switch( messageLevel ) {
+		case ERROR:
+		    prefix = "[ERROR]: ";
+		    break;
+		case WARNING:
+		    prefix = "[WARNING]: ";
+		    break;
+		case INFO:
+			prefix = "[INFO]: ";
+			break;
+		case DEBUG:
+			prefix = "[DEBUG]: ";
+			break;
+		}
 		time_t c_time = chrono::system_clock::to_time_t(chrono::system_clock::now());
 		char * c_time_char = ctime(&c_time);
 		c_time_char[strlen(c_time_char) - 1] = '\0';
-		logFile << "[" << c_time_char << "]: " << message << "\n";
+		logFile << "[" << c_time_char << "]: " << prefix << message << "\n";
 	}
 }
 

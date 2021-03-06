@@ -13,19 +13,21 @@
 
 using namespace std;
 
-enum LogLevel {ERROR, WARNING, INFO, DEBUG};
+
 
 class Logger
 {
+
+public:
+	enum LogLevel {ERROR, WARNING, INFO, DEBUG};
+    Logger(LogLevel level, const char * filePath);
+    ~Logger();
+    void log(const char * message, LogLevel messageLevel);
 
 private:
 	LogLevel loggerLevel;
 	ofstream logFile;
 
-public:
-    Logger(LogLevel level, const char * filePath);
-    ~Logger();
-    void Log(const char * message, LogLevel messageLevel);
 };
 
 #endif /* SRC_LOGGER_H_ */

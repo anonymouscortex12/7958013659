@@ -22,15 +22,30 @@ public:
 						BISTABLE, ADAPTATION, CLASS_1, CLASS_2, LATENCY, SUB_THRESH, \
 						INTEGRATOR, FIRST = PHASIC_SPIKE, LAST = INTEGRATOR};
 	CortexBuilder();
-	CortexBuilder(unsigned int numTotalNeurons, unsigned int numMicroColumns, uint8_t layers, Logger * log);
+	CortexBuilder(uint8_t layers, Logger * log);
 
 private:
-	unsigned int numTotalNeurons, numMicroColumns, numNeuronsPerColumn;
-	uint8_t numLayers;
+	//CORTEX-TREE
+	uint8_t numLevelsCortexTree, numColumnsTopLevel;
+
+	//numHubsLevelX = numHubsPerBlockByLevel[LevelX]
+	vector<uint8_t> numHubsPerBlockByLevel;
+
+	//numColumnsLevelX = (numColumnsLevelXMinus1 / numHubsPerBlockLevelXMinus1 ) * numColumnsPerBlockByLevel[LevelXMinus1]
+	vector<uint8_t> numColumnsPerBlockByLevel;
+
+	//numConnectionsSingleNeuronColumnAToAllNeuronsColumnBLevelX = numNeuronsColumnBLevelX * interColConnProbByLevel[LevelX]
+	vector<float> interColConnProbByLevel; // We may need to modify this to include connectivity design by level
+
+	//MICROCOLUMNS
+	unsigned int numNeuronsPerColumn;
+	uint8_t numLayersPerColumn;
 	// numNueronsLayerX = neuronDistribByLayer[LayerX]*numNeuronsPerColumn
 	float * neuronDistribByLayer;
 	// numNeuronsLayerXNeuronTypeY = numNueronsLayerX*neuronProbByLayer[LayerX][NeuronTypeY]
 	vector<float *> neuronProbByLayer;
+	// numConnLayerXToLayerY = numNeuronsLayerX * (intraSynapticConnProbByLayer[LayerX][LayerY])
+	vector<float *> intraSynapticConnProbByLayer;
 	map<NeuronType, vector <float> > neuronParamsByType = {
 								{PHASIC_SPIKE,  {-70, -20, 0.02, 0.25, -65, 6, 0.5}},
 								{TONIC_SPIKE, {-70, -20, 0.02, 0.2, -65, 6, 14}},
@@ -52,6 +67,7 @@ private:
 								{SUB_THRESH, {-70, -20,0.05, 0.26,-60,0,0}},
 								{INTEGRATOR, {-70, -20, 0.02,-0.1,-55,6,0}},
 					};
+
 };
 
 

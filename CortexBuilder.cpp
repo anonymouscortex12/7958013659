@@ -6,14 +6,13 @@
 
 #include "CortexBuilder.h"
 
-CortexBuilder::CortexBuilder(unsigned int totalNeurons, unsigned int totalMicrocolumns, uint8_t layers, Logger * logger){
-	numTotalNeurons = totalNeurons, numMicroColumns = totalMicrocolumns;
-	numLayers = layers;
-	if (!(numTotalNeurons % numMicroColumns == 0)) {
-		logger->log("Number Columns must divide Number Neurons\n", Logger::ERROR);
-		exit(EXIT_FAILURE);
-	}
-	numNeuronsPerColumn = numTotalNeurons / numMicroColumns;
+CortexBuilder::CortexBuilder(uint8_t layers, Logger * logger){
+	numLayersPerColumn = layers;
+	//if (!(numTotalNeurons % numMicroColumns == 0)) {
+	//	logger->log("Number Columns must divide Number Neurons\n", Logger::ERROR);
+	//	exit(EXIT_FAILURE);
+	//}
+	//numNeuronsPerColumn = numTotalNeurons / numMicroColumns;
 	//Neurons for each layer =
 }
 

@@ -64,6 +64,7 @@ void NeuronSimulateTwoNodes::simulateActivity(Neuron a, Neuron b, deque<uint32_t
 void NeuronSimulateTwoNodes::simulateAndSave () {
 	logger.open("SIM_2N_10000T.txt");
 	deque<uint32_t> spikeLedger [4];
+	unsigned int cid_lid = 0;
 	unsigned int n_1_id = 2;
 	unsigned int n_2_id = 3;
 	unsigned int neighbors_1[2] = {0, n_2_id};
@@ -78,8 +79,8 @@ void NeuronSimulateTwoNodes::simulateAndSave () {
 			logger << "\n\n\n--------------------- STARTING NEW SIMULATION ---------------------\n";
 			logger << "N_1: " << neurons[i] << "; N_2: " << neurons[j] << "\n";
 
-			Neuron n_1(&n_1_id, neurolib[neurons[i]], neiWeights_1,neighbors_1, 2);
-			Neuron n_2(&n_2_id, neurolib[neurons[j]], neiWeights_2, neighbors_2, 2);
+			Neuron n_1(&n_1_id, &cid_lid, &cid_lid, neurolib[neurons[i]], neiWeights_1,neighbors_1, 2);
+			Neuron n_2(&n_2_id, &cid_lid, &cid_lid, neurolib[neurons[j]], neiWeights_2, neighbors_2, 2);
 			// I_1 -> n_1 -> n_2, excite
 			logger << "\n\nCircuit:  I_1 -> n_1 -> n_2, excite \n";
 			neiWeights_1[0] = 5.0, neiWeights_1[1] = 0.0;

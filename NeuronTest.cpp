@@ -1,14 +1,14 @@
 /*
- * NeuronClassFunctionTest.cpp
+ * NeuronTest.cpp
  *
  *  Created on: Feb 26, 2021
  */
 #include "Neuron.h"
-#include "NeuronClassFunctionTest.h"
+#include "NeuronTest.h"
 using namespace std;
 
-void NeuronClassFunctionTest::testNeuron()  {
-	myNeuron.setValues(&unique_id, params, neiWeights, neighbors, numNeighbors);
+void NeuronTest::testNeuron()  {
+	myNeuron.setValues(&unique_id, &column_id, &layer_id,params, neiWeights, neighbors, numNeighbors);
 	//Test for updating voltage
 	for (uint32_t i = 0; i< 10; ++i) {
 		spikeLedger[1].push_back(i);

@@ -14,8 +14,8 @@ using namespace std;
 
 Neuron::Neuron(){}
 
-Neuron::Neuron(unsigned int * unique_id, float * params, float * neiWeights, unsigned int * neighbors, uint32_t numNeighbors){
-	uid = unique_id;
+Neuron::Neuron(unsigned int * unique_id, unsigned int * column_id, unsigned int * layer_id, float * params, float * neiWeights, unsigned int * neighbors, uint32_t numNeighbors){
+	uid = unique_id, cid = column_id, lid = layer_id;
 	//Determines neural dynamics
 	v = params[0], u = params[1], a = params[2], b = params[3], \
 	c = params[4], d = params[5], I = params[6], alpha = params[7], \
@@ -25,16 +25,16 @@ Neuron::Neuron(unsigned int * unique_id, float * params, float * neiWeights, uns
 	numNei = numNeighbors;
 }
 
-void Neuron::setValues(unsigned int * unique_id, float * params, float * neiWeights, unsigned int * neighbors, uint32_t numNeighbors)
+void Neuron::setValues(unsigned int * unique_id, unsigned int * column_id, unsigned int * layer_id, float * params, float * neiWeights, unsigned int * neighbors, uint32_t numNeighbors)
 {
-	uid = unique_id;
-		//Determines neural dynamics
-		v = params[0], u = params[1], a = params[2], b = params[3], \
-		c = params[4], d = params[5], I = params[6], alpha = params[7], \
-		A_pos = params[8], A_neg = params[9], tau_pos = params[10], tau_neg = params[11];
-		weights = neiWeights;
-		nei = neighbors;
-		numNei = numNeighbors;
+	uid = unique_id, cid = column_id, lid = layer_id;
+	//Determines neural dynamics
+	v = params[0], u = params[1], a = params[2], b = params[3], \
+	c = params[4], d = params[5], I = params[6], alpha = params[7], \
+	A_pos = params[8], A_neg = params[9], tau_pos = params[10], tau_neg = params[11];
+	weights = neiWeights;
+	nei = neighbors;
+	numNei = numNeighbors;
 }
 void Neuron::clearSpikeHistory(deque <uint32_t> * spikeLedger) {
 	//deque<uint32_t> newLedger;

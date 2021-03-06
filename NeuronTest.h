@@ -1,5 +1,5 @@
 /*
- * NeuronClassFunctionTest.h
+ * NeuronTest.h
  *
  *  Created on: Feb 26, 2021
  */
@@ -8,13 +8,13 @@
 #include <stdint.h>
 #include <deque>
 
-#ifndef SRC_NEURONCLASSFUNCTIONTEST_H_
-#define SRC_NEURONCLASSFUNCTIONTEST_H_
+#ifndef SRC_NeuronTest_H_
+#define SRC_NeuronTest_H_
 
-class NeuronClassFunctionTest {
+class NeuronTest {
 
 	private:
-		unsigned int unique_id = 0;
+		unsigned int unique_id = 0, column_id = 0, layer_id = 0;
 		float neiWeights [2] = {0.5, 1.0};
 		unsigned int neighbors [2]= {1,2};
 		uint32_t numNeighbors = 2;
@@ -29,4 +29,4 @@ class NeuronClassFunctionTest {
 
 
 
-#endif /* SRC_NEURONCLASSFUNCTIONTEST_H_ */
+#endif /* SRC_NeuronTest_H_ */
